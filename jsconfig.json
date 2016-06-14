@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "target": "es2015"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

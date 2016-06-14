@@ -1,0 +1,8 @@
+*.log
+/node_modules
+/public/css
+/public/js
+/server/common
+/config/*
+/typings
+!/config/example.js
