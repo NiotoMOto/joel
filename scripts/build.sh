@@ -4,7 +4,7 @@ SCRIPTDIR=$(dirname $0);
 BASEDIR=$(realpath "$SCRIPTDIR/..");
 DOCKERFILE="$BASEDIR/Dockerfile";
 VERSION="not set";
-CONTAINER="docker-dev.etf1.tf1.fr:5000/oneinfo/backoffice";
+CONTAINER="docker-dev.etf1.tf1.fr:5000/"; # Rajouter un nom de repo/image
 
 # Message utility
 function message() {

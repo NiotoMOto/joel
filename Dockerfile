@@ -15,10 +15,10 @@ RUN npm i -g npm
 
 RUN mkdir -p /data/starter
 
-ADD node_modules/ /data/backoffice/node_modules
-ADD public/ /data/backoffice/public
-ADD server/ /data/backoffice/server
-ADD index.js package.json /data/backoffice/
+ADD node_modules/ /data/starter/node_modules
+ADD public/ /data/starter/public
+ADD server/ /data/starter/server
+ADD index.js package.json /data/starter/
 
 WORKDIR /data/starter
 

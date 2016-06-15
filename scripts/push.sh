@@ -1,7 +1,7 @@
 #!/bin/bash
 
 VERSION="not set";
-CONTAINER="docker-dev.etf1.tf1.fr:5000/oneinfo/backoffice";
+CONTAINER="docker-dev.etf1.tf1.fr:5000/"; # Rajouter un repo/image
 
 # Message utility
 function message() {
