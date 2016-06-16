@@ -40,9 +40,6 @@ export const getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
 
-export const devicesToText = (notifs) =>
-  notifs.map((n) => DEVICES.find((d) => d.name === n).label).join(', ');
-
 export const dateToText = (date) =>
   date ? moment(date).format(DATE_FORMAT) : '';
 
@@ -56,12 +53,6 @@ export const idWithDefault = (defaultValue) =>
 
 export const mapDispatchToProps = (...keys) => (dispatch) => keys.reduce((agg, key) =>
   (agg.actions[key] = bindActionCreators(actions[key], dispatch), agg), { actions: {} });
-
-export const connectWithDefaultState = (...args) => reduxConnect(id, ...args);
-
-export const connectWithSelectedState = (keys, ...args) => reduxConnect(select(...keys), ...args);
-
-export const connectWithNoState = (...args) => reduxConnect(null, ...args);
 
 export const connect = ({ actions = [], props = [], mergeProps = null, options = {} } = {}) => {
   const propsCb = props === 'default' ? id : select(...props);

@@ -4,7 +4,6 @@ const express = require('express');
 const qs = require('querystring');
 
 const { request } = require('../../services');
-const { pick } = require('../../common/services/util');
 
 const apiRouter = new express.Router();
 

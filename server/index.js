@@ -9,7 +9,6 @@ const bodyParser = require('body-parser');
 const express = require('express');
 
 const engines = require('./engines');
-const middlewares = require('./middlewares');
 const routes = require('./routes');
 
 const app = new express();

@@ -4,7 +4,6 @@ import { combineReducers, createStore } from 'redux';
 
 import enhancer from './enhancer';
 import * as reducers from '../reducers';
-import { idWithDefault } from '../services/util/index';
 import { omit, pick } from '../services/util/object';
 
 const filterReducers = (reducers, { action, keys = [] } = {}) => {
