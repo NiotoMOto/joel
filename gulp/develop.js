@@ -4,10 +4,19 @@ const gulp = require('gulp');
 const plugins = require('gulp-load-plugins')();
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const exec = require('child_process').exec;
 
 const constants = require('./constants');
 const node = require('./node');
 const webpackConfig = require(constants.paths.webpack.config);
+
+const runCommand = function(command) {
+  exec(command, function (err, stdout, stderr) {
+    if (err !== null) {
+      console.log('exec error: ' + err);
+    }
+  });
+}
 
 gulp.task('node:kill', node.kill);
 
@@ -22,6 +31,16 @@ gulp.task('webpack', ['node:kill'], (done) =>
     }
     done();
   }));
+
+gulp.task("mongo-start", () => {
+  var command = "mongod --fork --dbpath ./datasets --logpath ./logs/mongo.log";
+  runCommand(command);
+});
+
+gulp.task("mongo-stop", () => {
+  var command = 'mongo admin --eval "db.shutdownServer();"'
+  runCommand(command);
+});
 
 gulp.task('compile', ['node:kill'], () =>
   gulp.src(constants.paths.common.react)

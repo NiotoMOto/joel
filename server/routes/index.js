@@ -2,14 +2,29 @@
 
 const express = require('express');
 
+require('../data/');
 const apiRouter = require('./api');
-
 const mainRouter = new express.Router();
+
+const request = require('../services/request');
 
 mainRouter.use('/api', apiRouter);
 
 mainRouter.get('/', (req, res) => {
-  res.render('Home');
+  request('get', '/user')
+  .then(({ body: users }) => {
+    const props = {
+      users,
+    };
+    res.render('Home', { props });
+  });
+});
+
+mainRouter.get('/routes/api', (req, res) => {
+  res.json(apiRouter.stack);
+});
+mainRouter.get('/routes/main', (req, res) => {
+  res.json(mainRouter.stack);
 });
 
 module.exports = mainRouter;

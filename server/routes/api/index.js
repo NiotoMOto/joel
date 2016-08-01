@@ -1,48 +1,27 @@
-'use strict';
-
+const mongoose = require('mongoose');
+const restify = require('express-restify-mongoose');
 const express = require('express');
-const qs = require('querystring');
-
-const { request } = require('../../services');
-
 const apiRouter = new express.Router();
-
-/**
- * Gestion globale des ressources
- */
-
-apiRouter.route('/:resource')
-  .get(({ params: { resource }, query }, res) => {
-    request('get', `/${resource}/?${qs.stringify(query)}`)
-      .then(({ body, headers }) => {
-        res.send({
-          [resource]: body,
-          totalCount: +headers['x-total-count'],
+for (const model in mongoose.models) {
+  restify.serve(apiRouter, mongoose.models[model],
+    {
+      prefix: '',
+      totalCountHeader: true,
+      onError: (err, req, res) => {
+        const statusCode = req.erm.statusCode; // 400 or 404
+        res.status(statusCode).json({
+          message: err.message,
         });
-      })
-      .catch(({ stack, statusCode }) => res.status(statusCode).send(stack));
-  })
-  .post(({ body, params: { resource } }, res) => {
-    request('post', `/${resource}/`, body)
-      .then(({ body }) => res.send(body))
-      .catch(({ stack, statusCode }) => res.status(statusCode).send(stack));
-  });
+      },
+      postProcess: (req, res, next) => {
+        const statusCode = req.erm.statusCode; // 200 or 201
+        console.info(`${req.method} ${req.path} request completed with status code ${statusCode}`);
+        next();
+      },
+    }
+  );
+}
 
-apiRouter.route('/:resource/:id')
-  .get(({ params: { id, resource } }, res) => {
-    request('get', `/${resource}/${id}`)
-      .then(({ body }) => res.send(body))
-      .catch(({ stack, statusCode }) => res.status(statusCode).send(stack));
-  })
-  .patch(({ body, params: { id, resource } }, res) => {
-    request('patch', `/${resource}/${id}`, body)
-      .then(({ body }) => res.send(body))
-      .catch(({ stack, statusCode }) => res.status(statusCode).send(stack));
-  })
-  .delete(({ params: { id, resource } }, res) => {
-    request('delete', `/${resource}/${id}`)
-      .then(({ body }) => res.send(body))
-      .catch(({ stack, statusCode }) => res.status(statusCode).send(stack));
-  });
+require('../../data/populate')();
 
 module.exports = apiRouter;

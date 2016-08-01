@@ -9,10 +9,9 @@ const config = require('../../config');
 
 module.exports = (method, path, data) => {
   const isSafe = ['GET', 'HEAD'].indexOf(method.toUpperCase()) >= 0;
-  const service = path.match(/[a-zA-Z-]+/);
-
+  const apiUrl = config.apiUrl;
   const options = {
-    uri: url.resolve(config.services[service], path),
+    uri: `${apiUrl}${path}`,
     method: method.toUpperCase(),
     headers: {
       Accept: 'application/json',
