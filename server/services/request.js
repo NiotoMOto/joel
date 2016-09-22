@@ -17,7 +17,7 @@ module.exports = (method, path, data) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: !(isSafe) ? data || {} : null,
+    body: data,
     resolveWithFullResponse: true,
     json: true, // Automatically stringifies the body to JSON
   };

@@ -13,6 +13,9 @@ for (const model in mongoose.models) {
           message: err.message,
         });
       },
+      preProcess: (req, res, next) => {
+        next();
+      },
       postProcess: (req, res, next) => {
         const statusCode = req.erm.statusCode; // 200 or 201
         console.info(`${req.method} ${req.path} request completed with status code ${statusCode}`);

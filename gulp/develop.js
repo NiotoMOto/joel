@@ -32,12 +32,12 @@ gulp.task('webpack', ['node:kill'], (done) =>
     done();
   }));
 
-gulp.task("mongo-start", () => {
+gulp.task('mongo-start', () => {
   var command = "mongod --fork --dbpath ./datasets --logpath ./logs/mongo.log";
   runCommand(command);
 });
 
-gulp.task("mongo-stop", () => {
+gulp.task('mongo-stop', () => {
   var command = 'mongo admin --eval "db.shutdownServer();"'
   runCommand(command);
 });

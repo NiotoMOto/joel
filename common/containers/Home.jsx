@@ -9,7 +9,11 @@ export default class Home extends Component {
   render() {
     return (
       <Layout title="Photos stock">
-        <h1></h1>
+        <form action="/upload/image" encType="multipart/form-data" method="POST" >
+          Select an image to upload:
+          <input name="image" type="file" />
+          <input type="submit" value="Upload Image" />
+        </form>
       </Layout>
     );
   }
