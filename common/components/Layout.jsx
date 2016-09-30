@@ -3,21 +3,18 @@
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 const { Component } = React;
 
-interface IProps {
-  children?: React.ReactNode;
-  title: string;
-  open?: boolean;
-}
+const darkMuiTheme = getMuiTheme(
+  {
+    userAgent: 'all',
+  }
+);
 
-interface IStates {
-  open?: boolean;
-}
-
-const darkMuiTheme = getMuiTheme();
-
-export default class Layout extends Component<IProps, IStates> {
+export default class Layout extends Component {
   constructor(props) {
     super(props);
     // this.setState({open: this.props.open ? this.props.open : false});
