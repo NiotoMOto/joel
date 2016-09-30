@@ -5,10 +5,13 @@ const express = require('express');
 require('../data/');
 const apiRouter = require('./api');
 const mainRouter = new express.Router();
+const projetsRouter = require('./projets');
 
 const request = require('../services/request');
 
 mainRouter.use('/api', apiRouter);
+
+mainRouter.use('/projets', projetsRouter);
 
 mainRouter.get('/', (req, res) => {
   request('get', '/user')
@@ -26,5 +29,7 @@ mainRouter.get('/routes/api', (req, res) => {
 mainRouter.get('/routes/main', (req, res) => {
   res.json(mainRouter.stack);
 });
+
+
 
 module.exports = mainRouter;

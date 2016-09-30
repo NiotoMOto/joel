@@ -1,6 +1,6 @@
 'use strict';
 
-import userService from '../services/rest/user';
+// import userService from '../services/rest/user';
 
 export const FETCH_USER = 'FETCH_USER';
 

@@ -2,17 +2,21 @@
 
 const Promise = require('bluebird');
 const User = require('mongoose').model('user');
-const Media = require('mongoose').model('media');
+const Projet = require('mongoose').model('projet');
 
 const populate = () => {
   console.log('Poulate database ....');
   return Promise.all([
     User.remove({}),
-    Media.remove({}),
+    Projet.remove({}),
   ]).then(() => {
     User.create({ username : 'Antoine', password: 'antoine' });
     User.create({ username : 'Johann', password: 'johann' });
     User.create({ username : 'Adrien', password: 'adrien' });
+    Projet.create({ name: 'projet1' });
+    Projet.create({ name: 'projet2' });
+    Projet.create({ name: 'projet3' });
+    Projet.create({ name: 'projet4' });
   });
 };
 

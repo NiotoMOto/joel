@@ -1,11 +1,11 @@
 'use strict';
 
-import { FETCH_MEDIA } from '../actions/medias';
+import { FETCH_PROJET } from '../actions/projets';
 
 export default function tags(state = [], action) {
   switch (action.type) {
-    case FETCH_MEDIA:
-      return action.medias;
+    case FETCH_PROJET:
+      return action.projets;
     default:
       return state;
   }
