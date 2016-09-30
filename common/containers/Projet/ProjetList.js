@@ -3,7 +3,8 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Card, CardTitle, CardActions } from 'material-ui/Card';
-import { FlatButton } from 'material-ui';
+import { FlatButton, FloatingActionButton } from 'material-ui';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import { connect } from '../../services/util';
 import Layout from '../../components/Layout';
@@ -14,6 +15,14 @@ export default class ProjetList extends Component {
     totalCount: PropTypes.number.isRequired,
     projets: PropTypes.array.isRequired,
   };
+
+  renderFooter() {
+    return (
+      <FloatingActionButton className="pull-right">
+        <ContentAdd />
+      </FloatingActionButton>
+    );
+  }
 
   render() {
     const projets = this.props.projets.map((p) => (
@@ -32,9 +41,11 @@ export default class ProjetList extends Component {
       </div>
     ));
     return (
-      <Layout>
+      <Layout footer={this.renderFooter()}>
         <h1>Liste des Projets </h1>
-        {projets}
+        <div className="row">
+          {projets}
+        </div>
       </Layout>
     );
   }

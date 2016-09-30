@@ -4,3 +4,21 @@
 @import "/vendors/admin-lte/dist/css/AdminLTE.min.css";
 @import "/vendors/admin-lte/dist/css/skins/skin-black.min.css";
 @import "/vendors/toastr/build/toastr.min.css";
+
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2rem;
+  height: 30px;
+  text-align: center;
+  height: 90px;
+}
+
+
+.main-container {
+  padding: 2rem;
+  margin-bottom: 90px;
+}
