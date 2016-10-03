@@ -9,25 +9,28 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import { connect } from '../../services/util';
 import Layout from '../../components/Layout';
 
-@connect({ props: ['projets', 'totalCount'] })
-export default class ProjetList extends Component {
+@connect({ props: ['projects', 'totalCount'] })
+export default class ProjectList extends Component {
   static propTypes = {
     totalCount: PropTypes.number.isRequired,
-    projets: PropTypes.array.isRequired,
+    projects: PropTypes.array.isRequired,
   };
 
   renderFooter() {
     return (
-      <FloatingActionButton className="pull-right">
+      <FloatingActionButton
+        className="pull-right"
+        href="/projects/new"
+      >
         <ContentAdd />
       </FloatingActionButton>
     );
   }
 
   render() {
-    const projets = this.props.projets.map((p) => (
+    const projects = this.props.projects.map((p) => (
       <div
-        className="col-sm-3 card-spaced"
+        className="spaced col-sm-3"
         key={p._id}
       >
         <Card>
@@ -35,7 +38,7 @@ export default class ProjetList extends Component {
             title={p.name}
           />
           <CardActions>
-            <FlatButton label="Détail" />
+            <FlatButton href={`/projects/${p._id}`} label="Détail" />
           </CardActions>
         </Card>
       </div>
@@ -44,7 +47,7 @@ export default class ProjetList extends Component {
       <Layout footer={this.renderFooter()}>
         <h1>Liste des Projets </h1>
         <div className="row">
-          {projets}
+          {projects}
         </div>
       </Layout>
     );

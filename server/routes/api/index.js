@@ -1,7 +1,14 @@
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
 const express = require('express');
+const methodOverride = require('method-override');
+const bodyParser = require('body-parser');
+
 const apiRouter = new express.Router();
+
+apiRouter.use(bodyParser.json());
+apiRouter.use(methodOverride());
+
 for (const model in mongoose.models) {
   restify.serve(apiRouter, mongoose.models[model],
     {

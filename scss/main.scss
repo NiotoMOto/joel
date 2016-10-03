@@ -6,6 +6,8 @@
 @import "/vendors/toastr/build/toastr.min.css";
 
 
+$green: #009688;
+
 .footer {
   position: fixed;
   right: 0;
@@ -21,4 +23,9 @@
 .main-container {
   padding: 2rem;
   margin-bottom: 90px;
+}
+
+
+.green  {
+  background-color: $green;
 }

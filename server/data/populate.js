@@ -2,7 +2,7 @@
 
 const Promise = require('bluebird');
 const User = require('mongoose').model('user');
-const Projet = require('mongoose').model('projet');
+const Projet = require('mongoose').model('project');
 
 const populate = () => {
   console.log('Poulate database ....');
