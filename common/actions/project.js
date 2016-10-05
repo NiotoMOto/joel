@@ -16,10 +16,8 @@ export const create = (body) => (dispatch) => {
   return projectService.create(
     Object.assign(body, {}),
     params).then((res) => {
-      console.log(res);
-      dispatch({ type: CREATE_PROJECT, res })
+      dispatch({ type: CREATE_PROJECT, res });
       return res;
-      console.log(res);
     });
 };
 

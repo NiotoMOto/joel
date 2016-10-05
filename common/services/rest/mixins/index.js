@@ -1,10 +1,11 @@
 'use strict';
 
 import * as jsonpointer from 'jsonpointer';
-import Promise from 'bluebird';
 
 import req from '../../req';
 import { capitalize, map, pick, diffObj } from '../../../services/util';
+import Promise from 'bluebird';
+
 import { localize } from '../../../services/locales';
 
 export const main = (name, path, options = {}) => {

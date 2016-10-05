@@ -2,4 +2,6 @@
 
 import * as mixins from './mixins';
 
-export default mixins.main('user', '/api/v1/users');
+const methods = Object.assign({}, mixins.main('user', '/api/v1/user'));
+
+export default Object.assign({}, methods);

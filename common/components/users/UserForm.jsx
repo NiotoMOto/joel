@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 
 import { Input } from '../commons';
 
-export default class ProductForm extends Component {
+export default class UserForm extends Component {
   static porpTypes = {
     user: PropTypes.object.isRequired,
     patch: PropTypes.func,
@@ -13,11 +13,11 @@ export default class ProductForm extends Component {
     return (
       <div>
         <Input
-          defaultValue={user.name}
-          floatingLabelText="Nom"
-          hintText="Nom du projet"
+          defaultValue={user.username}
+          floatingLabelText="Username"
+          hintText="Username"
           id="userName"
-          onChange={patch.bind(this, '/name')}
+          onChange={patch.bind(this, '/username')}
           type="text"
         />
       </div>

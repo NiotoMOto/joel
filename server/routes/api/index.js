@@ -1,8 +1,10 @@
+const express = require('express');
 const mongoose = require('mongoose');
 const restify = require('express-restify-mongoose');
-const express = require('express');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
+
+const { request } = require('../../services');
 
 const apiRouter = new express.Router();
 

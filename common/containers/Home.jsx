@@ -8,12 +8,8 @@ import { connect } from '../services/util';
 export default class Home extends Component {
   render() {
     return (
-      <Layout title="Photos stock">
-        <form action="/upload/image" encType="multipart/form-data" method="POST" >
-          Select an image to upload:
-          <input name="image" type="file" />
-          <input type="submit" value="Upload Image" />
-        </form>
+      <Layout title="Joel projet">
+        <h1>Projets</h1>
       </Layout>
     );
   }

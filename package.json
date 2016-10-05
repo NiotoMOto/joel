@@ -9,7 +9,6 @@
     "gulp": "gulp"
   },
   "dependencies": {
-    "admin-lte": "^2.3.2",
     "babel-polyfill": "^6.5.0",
     "bcrypt": "^0.8.5",
     "bluebird": "^3.2.1",
@@ -20,6 +19,7 @@
     "diacritics": "^1.2.3",
     "dustjs-linkedin": "^2.7.2",
     "express": "^4.13.3",
+    "express-restify-mongoose": "^4.0.0",
     "fast-json-patch": "^0.5.7",
     "font-awesome": "^4.4.0",
     "immutable": "^3.7.6",
@@ -29,6 +29,7 @@
     "jsonpointer": "^3.0.0",
     "jsonwebtoken": "^5.7.0",
     "material-ui": "^0.15.4",
+    "method-override": "^2.3.6",
     "moment": "^2.10.6",
     "mongoose": "^4.5.5",
     "multer": "^1.1.0",
@@ -47,8 +48,7 @@
     "require-dir": "^0.3.0",
     "serialize-javascript": "^1.1.2",
     "toastr": "^2.1.2",
-    "whatwg-fetch": "^0.10.1",
-    "express-restify-mongoose": "^4.0.0"
+    "whatwg-fetch": "^0.10.1"
   },
   "devDependencies": {
     "babel-core": "^6.3.21",
@@ -84,7 +84,6 @@
     "phantomjs": "^2.1.7",
     "require-dir": "^0.3.0",
     "webpack": "^1.12.9",
-    "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.14.1",
     "webpack-stream": "^3.1.0"
   }
