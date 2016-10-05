@@ -6,12 +6,14 @@ require('../data/');
 const apiRouter = require('./api');
 const mainRouter = new express.Router();
 const projetsRouter = require('./projects');
+const usersRouter = require('./users');
 
 const request = require('../services/request');
 
 mainRouter.use('/api', apiRouter);
 
 mainRouter.use('/projects', projetsRouter);
+mainRouter.use('/users', usersRouter);
 
 mainRouter.get('/', (req, res) => {
   request('get', '/user')
