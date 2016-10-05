@@ -21,11 +21,13 @@ export const create = (body) => (dispatch) => {
     });
 };
 
-export const update = (id, original, body) => (dispatch) => {
+export const update = (id, body) => (dispatch) => {
   const params = {
     querystring: { id },
     messages: { success: 'Mise a jours de l\'utilisateur réussi' },
   };
-  return userService.update(id, original, body, params)
-    .then((res) => dispatch({ type: UPDATE_USER, body, res }));
+  return userService.update(id, body, params)
+    .then((res) => {
+      dispatch({ type: UPDATE_USER, body, res });
+    });
 };

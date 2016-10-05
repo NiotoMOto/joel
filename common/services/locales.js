@@ -31,7 +31,7 @@ export const template = (str = '') =>
  * localize renvoie le texte formaté avec les locales.
  * @param {string} key représentant le path dans le fichier des locales
  * @param {Object?} options
- * @param {string?} valeur par défaut
+ * @param {string?} def valeur par défaut
  * @returns {string}
  */
 export const localize = (key, options = {}, def = '') => {

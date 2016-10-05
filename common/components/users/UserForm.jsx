@@ -12,14 +12,36 @@ export default class UserForm extends Component {
     const { patch, user } = this.props;
     return (
       <div>
-        <Input
-          defaultValue={user.username}
-          floatingLabelText="Username"
-          hintText="Username"
-          id="userName"
-          onChange={patch.bind(this, '/username')}
-          type="text"
-        />
+        <div className="form-group">
+          <Input
+            defaultValue={user.username}
+            floatingLabelText="Username"
+            hintText="Username"
+            id="userName"
+            onChange={patch.bind(this, '/username')}
+            type="text"
+          />
+        </div>
+        <div className="form-group">
+          <Input
+            defaultValue={user.firstName}
+            floatingLabelText="Prénom"
+            hintText="Prénom"
+            id="userName"
+            onChange={patch.bind(this, '/firstName')}
+            type="text"
+          />
+        </div>
+        <div className="form-group">
+          <Input
+            defaultValue={user.lastName}
+            floatingLabelText="Nom de famille"
+            hintText="Nom de famille"
+            id="userName"
+            onChange={patch.bind(this, '/lastName')}
+            type="text"
+          />
+        </div>
       </div>
     );
   }

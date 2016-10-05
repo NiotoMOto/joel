@@ -46,19 +46,12 @@ export const main = (name, path, options = {}) => {
       }, options));
     },
 
-    update(id, body, original, options = {}) {
-      const diff = diffObj(original, body);
-      let promise;
-      if (Object.keys(diff).length) {
-        promise = req(`${retrieve('/update/path', path)}/${id}`, Object.assign({}, {
-          body: diff,
-          messages: buildMessages('update'),
-          params: { method: 'PATCH' },
-        }, options));
-      } else {
-        promise = Promise.resolve(original);
-      }
-      return promise;
+    update(id, body, options = {}) {
+      return req(`${retrieve('/update/path', path)}/${id}`, Object.assign({}, {
+        body,
+        messages: buildMessages('update'),
+        params: { method: 'PATCH' },
+      }, options));
     },
 
     remove(id, options = {}) {

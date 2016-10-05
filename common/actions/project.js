@@ -21,11 +21,11 @@ export const create = (body) => (dispatch) => {
     });
 };
 
-export const update = (id, original, body) => (dispatch) => {
+export const update = (id, body) => (dispatch) => {
   const params = {
     querystring: { id },
     messages: { success: 'Mise a jours du projet réussi' },
   };
-  return projectService.update(id, original, body, params)
+  return projectService.update(id, body, params)
     .then((res) => dispatch({ type: UPDATE_PROJECT, body, res }));
 };

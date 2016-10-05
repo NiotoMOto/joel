@@ -139,7 +139,7 @@ module.exports = {
     'func-names': 1,
     'max-len': [1, 100],
     'max-params': [1, 5],
-    'no-underscore-dangle': 1,
+    'no-underscore-dangle': 0,
     'operator-assignment': [1, 'always'],
     'sort-vars': 1,
     'react/no-did-mount-set-state': [1, 'allow-in-func'],

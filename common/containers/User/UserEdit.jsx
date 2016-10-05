@@ -28,7 +28,6 @@ export default class ProductNew extends Component {
 
   render() {
     const { user, actions } = this.props;
-    console.log(actions);
     return (
       <Layout footer={this.renderFooter()}>
         <UserForm
