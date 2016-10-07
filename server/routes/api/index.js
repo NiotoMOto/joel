@@ -4,7 +4,10 @@ const restify = require('express-restify-mongoose');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 
-const { request } = require('../../services');
+const { pick } = require('../../common/services/util/object');
+const { log } = require('../../services');
+
+const loggedKeys = ['url', 'method', 'body'];
 
 const apiRouter = new express.Router();
 
@@ -26,14 +29,13 @@ for (const model in mongoose.models) {
         next();
       },
       postProcess: (req, res, next) => {
-        const statusCode = req.erm.statusCode; // 200 or 201
-        console.info(`${req.method} ${req.path} request completed with status code ${statusCode}`);
+        log.info(pick(req, ...loggedKeys), `${res.statusCode} (in ms)`);
         next();
       },
     }
   );
 }
 
-require('../../data/populate')();
+// require('../../data/populate')();
 
 module.exports = apiRouter;
