@@ -24,6 +24,7 @@ for (const model in mongoose.models) {
         res.status(statusCode).json({
           message: err.message,
         });
+        log.error(pick(req, ...loggedKeys), err.message, `${res.statusCode} (in ms)`);
       },
       preProcess: (req, res, next) => {
         next();
@@ -31,7 +32,7 @@ for (const model in mongoose.models) {
       postProcess: (req, res, next) => {
         log.info(pick(req, ...loggedKeys), `${res.statusCode} (in ms)`);
         next();
-      },
+      }
     }
   );
 }

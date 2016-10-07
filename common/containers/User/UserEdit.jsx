@@ -6,13 +6,13 @@ import { connect } from '../../services/util/index';
 import UserForm from '../../components/users/UserForm';
 import Layout from '../../components/Layout';
 
-@connect({ props:['user', 'originalItem'], actions: ['user'] })
+@connect({ props:['user'], actions: ['user'] })
 export default class ProductNew extends Component {
 
   submit(e) {
     e.preventDefault();
     const { _id, ...body } = this.props.user;
-    this.props.actions.user.update(_id, body, this.props.originalItem);
+    this.props.actions.user.update(_id, body);
   }
 
   renderFooter() {
