@@ -9,11 +9,11 @@ export default class ProductForm extends Component {
   }
 
   render() {
-    const { patch, user } = this.props;
+    const { patch, project } = this.props;
     return (
       <div>
         <Input
-          defaultValue={user.name}
+          defaultValue={project.name}
           floatingLabelText="Nom"
           hintText="Nom du projet"
           id="userName"
