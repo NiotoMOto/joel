@@ -7,6 +7,7 @@ const apiRouter = require('./api');
 const mainRouter = new express.Router();
 const projetsRouter = require('./projects');
 const usersRouter = require('./users');
+const tasksRouter = require('./tasks');
 
 const request = require('../services/request');
 
@@ -14,6 +15,7 @@ mainRouter.use('/api', apiRouter);
 
 mainRouter.use('/projects', projetsRouter);
 mainRouter.use('/users', usersRouter);
+mainRouter.use('/tasks', tasksRouter);
 
 mainRouter.get('/', (req, res) => {
   request('get', '/user')

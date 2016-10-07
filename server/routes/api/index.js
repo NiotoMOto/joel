@@ -37,6 +37,6 @@ for (const model in mongoose.models) {
   );
 }
 
-// require('../../data/populate')();
+require('../../data/populate')();
 
 module.exports = apiRouter;

@@ -1,10 +1,7 @@
 'use strict';
 
-const qs = require('querystring');
 const express = require('express');
-const Promise = require('bluebird');
 
-const constants = require('../constants');
 const request = require('../services/request');
 const projectRouter = new express.Router();
 

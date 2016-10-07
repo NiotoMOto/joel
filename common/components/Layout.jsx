@@ -1,13 +1,13 @@
 'use strict';
 
 import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Drawer, AppBar, Menu, MenuItem } from 'material-ui';
 import Person from 'material-ui/svg-icons/social/person';
 import Work from 'material-ui/svg-icons/action/work';
+import ListIcon from 'material-ui/svg-icons/editor/format-list-bulleted';
 
 injectTapEventPlugin();
 
@@ -17,7 +17,6 @@ const darkMuiTheme = getMuiTheme(
   }
 );
 
-@connect()
 export default class Layout extends Component {
   static propTypes = {
     footer: PropTypes.element,
@@ -40,6 +39,12 @@ export default class Layout extends Component {
                 href="/projects"
                 primaryText="Projets"
                 rightIcon={<Work />}
+                style={{ width: '256px' }}
+              />
+              <MenuItem
+                href="/tasks"
+                primaryText="Tâches"
+                rightIcon={<ListIcon />}
                 style={{ width: '256px' }}
               />
             </Menu>

@@ -1,7 +1,9 @@
 module.exports = {
   expiresIn: 36000,
   secret:  'mysecretjwt',
-  services: {
-    // Ajouter un service (ex: `users: 'http://127.0.0.1:8004/'`)
-  },
+  apiUrl : 'http://localhost:4000/api/v1',
+  log: {
+    output: 'stdout',
+    level: 'info'
+  }
 };
