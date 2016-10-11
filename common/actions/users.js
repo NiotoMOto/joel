@@ -10,3 +10,10 @@ export const fetch = (query) => (dispatch) =>
       dispatch({ type: FETCH_USER, users });
       return { users, ...rest };
     });
+
+export const fetchAutocomplete = (query) => (dispatch) =>
+  userService.all(query)
+    .then((users) => {
+      dispatch({ type: FETCH_USER, users });
+      return { users };
+    });

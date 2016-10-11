@@ -3,7 +3,7 @@ import ContentCreate from 'material-ui/svg-icons/content/create';
 import { FloatingActionButton } from 'material-ui';
 
 import { connect } from '../../services/util/index';
-import ProductForm from '../../components/users/UserForm';
+import UserForm from '../../components/users/UserForm';
 import Layout from '../../components/Layout';
 
 @connect({ props:['user'], actions: ['user'] })
@@ -31,7 +31,7 @@ export default class ProductNew extends Component {
     const { user, actions } = this.props;
     return (
       <Layout footer={this.renderFooter()}>
-        <ProductForm
+        <UserForm
           patch={actions.user.patch}
           user={user}
         />

@@ -3,7 +3,7 @@ import ContentCreate from 'material-ui/svg-icons/content/create';
 import { FloatingActionButton } from 'material-ui';
 
 import { connect } from '../../services/util/index';
-import ProductForm from '../../components/projects/ProjectForm';
+import ProjectForm from '../../components/projects/ProjectForm';
 import Layout from '../../components/Layout';
 
 @connect({ props:['project', 'originalItem'], actions: ['project'] })
@@ -30,7 +30,7 @@ export default class ProductNew extends Component {
     const { project, actions } = this.props;
     return (
       <Layout footer={this.renderFooter()}>
-        <ProductForm
+        <ProjectForm
           patch={actions.project.patch}
           project={project}
         />

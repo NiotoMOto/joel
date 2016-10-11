@@ -24,12 +24,19 @@ taskRouter.get('/new', (req, res) => {
 
 taskRouter.get('/:id', (req, res) => {
   const id = req.params.id;
-  request('get', `/task/${id}`, req.body).then(({ body: task }) => {
-    const props = {
+  request('get', `/task/${id}`, req.body).then(({ body: task }) => (
+    {
       task,
       originalItem: task,
-    };
-    res.render('Task/TasksEdit', { props });
+    }
+  )).then((props) => {
+    Promise.all([
+      request('get', `/project/${props.task.project}`, req.body),
+      request('get', `/task//${props.task.project}`, req.body),
+    ]).then(([{ body: users }, { body: projects }]) => {
+      Object.assign(props, { users, projects });
+      res.render('Task/TasksEdit', { props });
+    });
   });
 
 });

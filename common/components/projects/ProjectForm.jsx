@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 
 import { Input } from '../commons';
 
-export default class ProductForm extends Component {
+export default class TaskForm extends Component {
   static porpTypes = {
     user: PropTypes.object.isRequired,
     patch: PropTypes.func,

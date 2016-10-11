@@ -6,3 +6,4 @@ export * as totalCount from './totalCount';
 export * as users from './users';
 export * as user from './user';
 export * as tasks from './tasks';
+export * as task from './task';

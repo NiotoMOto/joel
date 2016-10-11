@@ -31,10 +31,14 @@ export default class TasksList extends Component {
     const tasks = this.props.tasks.map((p) => (
       <TableRow key={p._id}>
         <TableRowColumn>
-          {p.user.firstName} {p.user.lastName}
+          {p.user ?
+            `${p.user.firstName} ${p.user.lastName}` :
+             (<span>Non attribué</span>)}
         </TableRowColumn>
         <TableRowColumn>
-          {p.project.name}
+        {p.project ?
+           p.project.name :
+           (<span>Pas de projet</span>)}
         </TableRowColumn>
         <TableRowColumn>
           {p.name}
