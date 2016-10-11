@@ -1,29 +1,14 @@
-FROM docker-dev.etf1.tf1.fr:5000/exploitation/node6
+FROM mhart/alpine-node:6.5.0
+ENV HOME=/home/app
+WORKDIR $HOME/
+# Install ssh
+RUN apk upgrade --update
 
-# Environnement forcé en mode production
-ENV NODE_ENV production
-
-RUN apk update && \
-    apk add python && \
-    apk add g++ && \
-    apk add make && \
-    apk add openssl && \
-    apk add ca-certificates && \
-    rm -rf /var/cac he/apk/*
-
-RUN npm i -g npm
-
-RUN mkdir -p /data/starter
-
-ADD node_modules/ /data/starter/node_modules
-ADD public/ /data/starter/public
-ADD server/ /data/starter/server
-ADD index.js package.json /data/starter/
-
-WORKDIR /data/starter
-
-RUN npm prune --production && npm rebuild
-
-EXPOSE 4000
-
-CMD ["node", "index.js"]
+# Bundle app source
+COPY node_modules $HOME/wetty6/node_modules
+COPY server $HOME/server
+COPY index.js $HOME/
+COPY package.json $HOME/wetty6
+RUN npm prune --production
+USER wetty6
+ENTRYPOINT  [ "npm", "start" ]

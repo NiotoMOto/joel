@@ -1,0 +1,35 @@
+clone:
+  path: gitlab.com/drexlbob/wetty6
+
+build:
+  image:  mhart/alpine-node:6.5.0
+  commands:
+    - apk upgrade --update
+    - npm install
+    - gulp build
+  environment:
+    - DRONE_SERVER=http://drone.guillemoto.com
+    - DRONE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoiTmlvdG9NT3RvIiwidHlwZSI6InVzZXIifQ.vi7SAkP18ekP4UVsozthjJnJdCdyZMoOfXq-wyMj3yc
+
+publish:
+  docker:
+    registry: registry.docker.guillemoto.com
+    insecure: true
+    repo: nioto/joel
+    tag: latest
+    storage_driver: aufs
+    when:
+      branch: drone-test
+      event: commit
+
+deploy:
+  ssh:
+    host: srv.guillemoto.com
+    user: root
+    port: 22
+    commands:
+      - docker pull registry.docker.guillemoto.com/nioto/joel:latest
+      - docker rm -f -v joel
+      - docker run --name joel -d --restart=always -p 4000:7000 registry.docker.guillemoto.com/nioto/joel:latest
+    when:
+      branch: master
