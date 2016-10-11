@@ -5,10 +5,9 @@ WORKDIR $HOME/
 RUN apk upgrade --update
 
 # Bundle app source
-COPY node_modules $HOME/wetty6/node_modules
+COPY node_modules $HOME/node_modules
 COPY server $HOME/server
 COPY index.js $HOME/
-COPY package.json $HOME/wetty6
+COPY package.json $HOME/
 RUN npm prune --production
-USER wetty6
 ENTRYPOINT  [ "npm", "start" ]
