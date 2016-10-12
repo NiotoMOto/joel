@@ -22,6 +22,8 @@ cache:
 
 publish:
   docker:
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
     registry: registry.docker.guillemoto.com
     insecure: true
     repo: joel
