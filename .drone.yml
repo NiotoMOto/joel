@@ -1,5 +1,5 @@
 clone:
-  path: gitlab.com/drexlbob/wetty6
+  path: github.com/NiotoMOto/joel
 
 build:
   image:  mhart/alpine-node:6.5.0
