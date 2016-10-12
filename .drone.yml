@@ -34,4 +34,4 @@ deploy:
       - docker rm -f -v joel
       - docker run --name joel -d --restart=always -p 4000:7000 registry.docker.guillemoto.com/nioto/joel:latest
     when:
-      branch: master
+      branch: drone-test
