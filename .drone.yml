@@ -13,11 +13,17 @@ build:
     - DRONE_SERVER=http://drone.guillemoto.com
     - DRONE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoiTmlvdG9NT3RvIiwidHlwZSI6InVzZXIifQ.vi7SAkP18ekP4UVsozthjJnJdCdyZMoOfXq-wyMj3yc
 
+
+cache:
+  mount:
+    - node_modules
+    - .git
+
 publish:
   docker:
     registry: registry.docker.guillemoto.com
     insecure: true
-    repo: nioto/joel
+    repo: joel
     tag: latest
     storage_driver: aufs
     when:
@@ -30,8 +36,8 @@ deploy:
     user: root
     port: 22
     commands:
-      - docker pull registry.docker.guillemoto.com/nioto/joel:latest
+      - docker pull registry.docker.guillemoto.com/joel:latest
       - docker rm -f -v joel
-      - docker run --name joel -d --restart=always -p 4000:7000 registry.docker.guillemoto.com/nioto/joel:latest
+      - docker run --name joel -d --restart=always -p 4000:7000 registry.docker.guillemoto.com/joel:latest
     when:
       branch: drone-test
