@@ -6,6 +6,8 @@
     "start": "node index.js",
     "rebuild": "gulp build",
     "build": "gulp build",
+    "run": "gulp clean ; gulp > /tmp/access.log 2>&1",
+    "log": "tail -f /tmp/access.log | bunyan -o short",
     "gulp": "gulp"
   },
   "dependencies": {
