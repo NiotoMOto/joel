@@ -18,14 +18,20 @@ cache:
   mount:
     - node_modules
     - .git
+    - docker/image.tar
 
 publish:
   docker:
     registry: registry.docker.guillemoto.com
     insecure: true
     repo: joel
+    file: Dockerfile
     tag: latest
     storage_driver: aufs
+    load: docker/image.tar
+    save:
+      destination: docker/image.tar
+      tag: latest
     when:
       branch: drone-test
       event: commit
