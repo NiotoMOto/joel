@@ -5,6 +5,7 @@ build:
   image:  mhart/alpine-node:6.5.0
   commands:
     - apk upgrade --update
+    - apk add --no-cache make gcc g++ python
     - npm install
     - gulp build
   environment:
