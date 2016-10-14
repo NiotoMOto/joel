@@ -8,6 +8,7 @@ RUN apk upgrade --update
 # Bundle app source
 COPY node_modules $HOME/node_modules
 COPY server $HOME/server
+COPY public $HOME/public
 COPY config $HOME/config
 COPY index.js $HOME/
 COPY package.json $HOME/
