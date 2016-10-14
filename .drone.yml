@@ -43,6 +43,6 @@ deploy:
     commands:
       - docker pull srv.guillemoto.com:5000/joel:latest
       - docker rm -f -v joel
-      - docker run --name joel -d --restart=always -p 4000:7000 srv.guillemoto.com:5000/joel:latest
+      - docker run --name joel -d --restart=always -p 7000:4000 srv.guillemoto.com:5000/joel:latest
     when:
       branch: drone-test
