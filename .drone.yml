@@ -41,8 +41,8 @@ deploy:
     user: root
     port: 22
     commands:
-      - docker pull registry.docker.guillemoto.com/joel:latest
+      - docker pull srv.guillemoto.com:5000/joel:latest
       - docker rm -f -v joel
-      - docker run --name joel -d --restart=always -p 4000:7000 registry.docker.guillemoto.com/joel:latest
+      - docker run --name joel -d --restart=always -p 4000:7000 srv.guillemoto.com:5000/joel:latest
     when:
       branch: drone-test
