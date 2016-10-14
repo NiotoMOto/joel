@@ -1,6 +1,7 @@
 FROM mhart/alpine-node:6.5.0
 ENV HOME=/home/app
 WORKDIR $HOME/
+
 # Install ssh
 RUN apk upgrade --update
 
