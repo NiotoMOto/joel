@@ -7,6 +7,7 @@ RUN apk upgrade --update
 # Bundle app source
 COPY node_modules $HOME/node_modules
 COPY server $HOME/server
+COPY config $HOME/config
 COPY index.js $HOME/
 COPY package.json $HOME/
 RUN npm prune --production
