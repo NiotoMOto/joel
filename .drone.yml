@@ -24,19 +24,18 @@ publish:
   docker:
     environment:
       - DOCKER_LAUNCH_DEBUG=true
-    registry: registry.docker.guillemoto.com
+    registry: srv.guillemoto.com:5000
     insecure: true
     repo: joel
-    file: Dockerfile
     tag: latest
-    storage_driver: aufs
+    storage_driver: vfs
     load: docker/image.tar
     save:
       destination: docker/image.tar
       tag: latest
     when:
       branch: drone-test
-      event: commit
+      event: push
 
 deploy:
   ssh:
