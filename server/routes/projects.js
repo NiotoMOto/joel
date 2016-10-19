@@ -21,12 +21,26 @@ projectRouter.get('/new', (req, res) => {
 
 projectRouter.get('/:id', (req, res) => {
   const id = req.params.id;
-  request('get', `/project/${id}`, req.body).then(({ body: project }) => {
-    const props = {
+  return request(
+    'get',
+    `/project/${id}`,
+    req.body
+  ).then(({ body: project }) => (
+    {
       project,
       originalItem: project,
-    };
-    res.render('Projet/ProjectEdit', { props });
+    }
+  )).then((props) => {
+    const query = JSON.stringify({
+      project: props.project._id,
+    });
+    request('get',
+      `/task/?query=${query}&populate=[{"path":"user"},{"path":"project"}]`,
+      req.body)
+    .then(({ body: tasks }) => {
+      Object.assign(props, { tasks });
+      res.render('Projet/ProjectEdit', { props });
+    });
   });
 
 });
