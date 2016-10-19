@@ -12,18 +12,23 @@ export default class TaskForm extends Component {
 
   searchUser(q) {
     const query = JSON.stringify({
-      $or: [
-        {
-          firstName: `~${q}`,
-        },
-      ],
+      $or: [{ firstName: `~${q}` }],
     });
     this.props.actions.users.fetchAutocomplete({ query });
   }
 
+  searchProject(q) {
+    const query = JSON.stringify({
+      $or: [{ name: `~${q}` }],
+    });
+    this.props.actions.projects.fetchAutocomplete({ query });
+  }
+
   render() {
-    const { patch, task, users } = this.props;
-    console.log();
+    const { patch, task, users, projects } = this.props;
+    const { user, project } = task;
+    const userValue = user ? user.firstName : '';
+    const projectValue = project ? project.name : '';
     return (
       <div>
         <div className="form-group">
@@ -49,6 +54,22 @@ export default class TaskForm extends Component {
             onNewRequest={patch.bind(this, '/user')}
             onUpdateInput={::this.searchUser}
             openOnFocus
+            searchText={userValue}
+          />
+        </div>
+        <div className="form-group">
+          <AutoComplete
+            dataSource={projects}
+            dataSourceConfig={{ text: 'name', value: '_id' }}
+            field="_id"
+            filter={AutoComplete.noFilter}
+            floatingLabelText="Projet"
+            hintText="Projet"
+            id="tech"
+            onNewRequest={patch.bind(this, '/project')}
+            onUpdateInput={::this.searchProject}
+            openOnFocus
+            searchText={projectValue}
           />
         </div>
       </div>

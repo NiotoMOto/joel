@@ -29,7 +29,9 @@ export default class TasksList extends Component {
 
   render() {
     const tasks = this.props.tasks.map((p) => (
-      <TableRow key={p._id}>
+      <TableRow
+        key={p._id}
+      >
         <TableRowColumn>
           {p.user ?
             `${p.user.firstName} ${p.user.lastName}` :
@@ -41,7 +43,7 @@ export default class TasksList extends Component {
            (<span>Pas de projet</span>)}
         </TableRowColumn>
         <TableRowColumn>
-          {p.name}
+          <a href={`/tasks/${p._id}`}> {p.name} </a>
         </TableRowColumn>
       </TableRow>
     ));
