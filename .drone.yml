@@ -16,7 +16,6 @@ cache:
   mount:
     - node_modules
     - .git
-    - docker/image.tar
 
 publish:
   docker:
@@ -27,7 +26,6 @@ publish:
     repo: joel
     tag: latest
     storage_driver: vfs
-    load: docker/image.tar
     save:
       destination: docker/image.tar
       tag: latest
