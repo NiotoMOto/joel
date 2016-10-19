@@ -11,6 +11,8 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
+import { Chip } from 'material-ui';
+
 import { connect } from '../../services/util';
 
 @connect({ props: ['tasks', 'totalCount'] })
@@ -38,6 +40,9 @@ export default class TasksTable extends Component {
         <TableRowColumn>
           <a href={`/tasks/${p._id}`}> {p.name} </a>
         </TableRowColumn>
+        <TableRowColumn>
+          <Chip style={{ textAlign: 'center' }}>{p.progress} %</Chip>
+        </TableRowColumn>
       </TableRow>
     ));
     return (
@@ -47,9 +52,10 @@ export default class TasksTable extends Component {
             <TableHeaderColumn>Technicien</TableHeaderColumn>
             <TableHeaderColumn>Projet</TableHeaderColumn>
             <TableHeaderColumn>Réalisation</TableHeaderColumn>
+            <TableHeaderColumn>Status</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody displayRowCheckbox={false}>
+        <TableBody displayRowCheckbox={true}>
           {tasks}
         </TableBody>
       </Table>
