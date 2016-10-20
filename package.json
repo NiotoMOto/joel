@@ -19,6 +19,7 @@
     "bunyan": "^1.8.1",
     "classnames": "^2.2.3",
     "cookie-parser": "^1.4.1",
+    "current-week-number": "^1.0.7",
     "diacritics": "^1.2.3",
     "dustjs-linkedin": "^2.7.2",
     "express": "^4.13.3",

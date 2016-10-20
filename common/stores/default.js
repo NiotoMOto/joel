@@ -18,5 +18,6 @@ const filterReducers = (reducers, { action, keys = [] } = {}) => {
 export default (initialState, options) =>
   createStore(combineReducers(filterReducers(Object.assign({}, reducers, {
     originalItem: idWithDefault({}),
+    currentWeek: idWithDefault({}),
     // Ajouter valeurs par défaut (ex: `user: idWithDefault({})`)
   }), options)), initialState, enhancer);

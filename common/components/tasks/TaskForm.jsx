@@ -2,8 +2,9 @@ import React, { PropTypes, Component } from 'react';
 
 import { connect } from '../../services/util/index';
 import { Input, AutoComplete } from '../commons';
+import items from '../../constants/items';
 
-@connect({ props: ['users', 'projects'], actions: ['users', 'projects'] })
+@connect({ props: ['users', 'projects', 'currentWeek'], actions: ['users', 'projects'] })
 export default class TaskForm extends Component {
   static porpTypes = {
     task: PropTypes.object.isRequired,
@@ -25,6 +26,8 @@ export default class TaskForm extends Component {
   }
 
   render() {
+    console.log(items.weeks, this.props.currentWeek);
+    const weeks = items.weeks;
     const { patch, task, users, projects } = this.props;
     const { user, project } = task;
     const userValue = user ? user.firstName : '';
@@ -90,6 +93,18 @@ export default class TaskForm extends Component {
             id="timePass"
             onChange={patch.bind(this, '/timePass')}
             type="number"
+          />
+        </div>
+        <div className="form-group">
+          <AutoComplete
+            dataSource={weeks}
+            field="week"
+            filter={AutoComplete.noFilter}
+            floatingLabelText="Semaine"
+            hintText="Semaine"
+            id="week"
+            onNewRequest={patch.bind(this, '/week')}
+            openOnFocus
           />
         </div>
       </div>

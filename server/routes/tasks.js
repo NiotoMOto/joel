@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const currentWeekNumber = require('current-week-number');
 
 const request = require('../services/request');
 const taskRouter = new express.Router();
@@ -30,7 +31,13 @@ taskRouter.get('/:id', (req, res) => {
       originalItem: task,
     }
   )).then((props) => {
-    Object.assign(props, { users: [props.task.user], project: [props.task.project] });
+    Object.assign(
+      props,
+      {
+        users: [props.task.user],
+        project: [props.task.project],
+        currentWeek: currentWeekNumber(Date.now()),
+      });
     res.render('Task/TasksEdit', { props });
   });
 

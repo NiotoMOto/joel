@@ -8,6 +8,7 @@ const schema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'user' },
   progress: { type: Number, default:0 },
   timePass: { type: Number, default:0 },
+  week: { type: Number },
 });
 
 module.exports = mongoose.model('task', schema);
