@@ -72,6 +72,26 @@ export default class TaskForm extends Component {
             searchText={projectValue}
           />
         </div>
+        <div className="form-group">
+          <Input
+            defaultValue={task.progress}
+            floatingLabelText="Progression"
+            hintText="Progression"
+            id="progress"
+            onChange={patch.bind(this, '/progress')}
+            type="number"
+          />
+        </div>
+        <div className="form-group">
+          <Input
+            defaultValue={task.timePass}
+            floatingLabelText="Temps passé"
+            hintText="Temps passé"
+            id="timePass"
+            onChange={patch.bind(this, '/timePass')}
+            type="number"
+          />
+        </div>
       </div>
     );
   }

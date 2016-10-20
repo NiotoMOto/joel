@@ -41,6 +41,9 @@ export default class TasksTable extends Component {
           <a href={`/tasks/${p._id}`}> {p.name} </a>
         </TableRowColumn>
         <TableRowColumn>
+          {p.timePass} h
+        </TableRowColumn>
+        <TableRowColumn>
           <Chip style={{ textAlign: 'center' }}>{p.progress} %</Chip>
         </TableRowColumn>
       </TableRow>
@@ -52,10 +55,11 @@ export default class TasksTable extends Component {
             <TableHeaderColumn>Technicien</TableHeaderColumn>
             <TableHeaderColumn>Projet</TableHeaderColumn>
             <TableHeaderColumn>Réalisation</TableHeaderColumn>
+            <TableHeaderColumn>Temps passé</TableHeaderColumn>
             <TableHeaderColumn>Status</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody displayRowCheckbox={true}>
+        <TableBody displayRowCheckbox={false}>
           {tasks}
         </TableBody>
       </Table>
