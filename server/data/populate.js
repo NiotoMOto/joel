@@ -17,10 +17,11 @@ const populate = () => {
       Projet.create({ name: 'projet1' }),
       User.create({ username : 'Antoine', password: 'antoine', firstName: 'Antoine', lastName: 'Guillemoto' }),
       Projet.create({ name: 'projet2' }),
-      User.create({ username : 'Johann', password: 'johann', firstName: 'Johann', lastName: 'Begain' }),
+      User.create({ username : 'Joel', password: 'johann', firstName: 'Joel', lastName: 'Guibert' }),
       Projet.create({ name: 'projet3' }),
       Projet.create({ name: 'projet4' }),
-      User.create({ username : 'Adrien', password: 'adrien', Adrien: 'Antoine', lastName: 'Parochia' }),
+      User.create({ username : 'Adrien', password: 'adrien', firstName: 'Adrien', lastName: 'Parochia' }),
+      User.create({ username : 'Johann', password: 'johann', firstName: 'Johann', lastName: 'Begain' }),
     ])
   )).then(([project, user, project2, user2, ...rest]) => {
     Task.create({ project, user, name: 'Tâche 1', progress: 0 });

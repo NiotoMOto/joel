@@ -16,6 +16,7 @@ calendarRouter.get('/', (req, res) => {
       users: users.body,
       tasks: tasks.body,
       currentWeek: currentWeekNumber(Date.now()),
+      selectedWeek: currentWeekNumber(Date.now()),
     };
     res.render('Calendar/Calendar', { props });
   });
