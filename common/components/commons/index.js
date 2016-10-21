@@ -1,2 +1,2 @@
 export Input from './Input';
-export AutoComplete from './AutoComplete';
+export PAutoComplete from './PAutoComplete';

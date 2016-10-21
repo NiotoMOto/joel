@@ -13,4 +13,4 @@ COPY config $HOME/config
 COPY index.js $HOME/
 COPY package.json $HOME/
 RUN npm prune --production
-ENTRYPOINT  ["NODE_ENV === 'production'", "npm", "start" ]
+ENTRYPOINT  ["NODE_ENV=production", "npm", "start" ]

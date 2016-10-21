@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react';
+import { AutoComplete } from 'material-ui';
 
 import { connect } from '../../services/util/index';
-import { Input, AutoComplete } from '../commons';
+import { Input, PAutoComplete } from '../commons';
 import items from '../../constants/items';
 
 @connect({ props: ['users', 'projects', 'currentWeek'], actions: ['users', 'projects'] })
@@ -25,11 +26,19 @@ export default class TaskForm extends Component {
     this.props.actions.projects.fetchAutocomplete({ query });
   }
 
+  numberFilter(searchText, key) {
+
+    return (searchText, key) => {
+      console.log('fdfd');
+      console.log(searchText);
+     return searchText.toString() !== '' && key.indexOf(searchText.toString()) !== -1;
+    }
+  }
+
   render() {
-    console.log(items.weeks, this.props.currentWeek);
     const weeks = items.weeks;
     const { patch, task, users, projects } = this.props;
-    const { user, project } = task;
+    const { user, project, week } = task;
     const userValue = user ? user.firstName : '';
     const projectValue = project ? project.name : '';
     return (
@@ -46,11 +55,11 @@ export default class TaskForm extends Component {
         </div>
 
         <div className="form-group">
-          <AutoComplete
+          <PAutoComplete
             dataSource={users}
             dataSourceConfig={{ text: 'firstName', value: '_id' }}
             field="_id"
-            filter={AutoComplete.noFilter}
+            filter={AutoComplete.caseInsensitiveFilter}
             floatingLabelText="Technicien"
             hintText="Technicien"
             id="tech"
@@ -61,7 +70,7 @@ export default class TaskForm extends Component {
           />
         </div>
         <div className="form-group">
-          <AutoComplete
+          <PAutoComplete
             dataSource={projects}
             dataSourceConfig={{ text: 'name', value: '_id' }}
             field="_id"
@@ -96,15 +105,17 @@ export default class TaskForm extends Component {
           />
         </div>
         <div className="form-group">
-          <AutoComplete
+          <PAutoComplete
             dataSource={weeks}
             field="week"
-            filter={AutoComplete.noFilter}
             floatingLabelText="Semaine"
             hintText="Semaine"
             id="week"
+            maxSearchResults={7}
             onNewRequest={patch.bind(this, '/week')}
             openOnFocus
+            searchText={week}
+            type="number"
           />
         </div>
       </div>
