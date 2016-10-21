@@ -26,15 +26,6 @@ export default class TaskForm extends Component {
     this.props.actions.projects.fetchAutocomplete({ query });
   }
 
-  numberFilter(searchText, key) {
-
-    return (searchText, key) => {
-      console.log('fdfd');
-      console.log(searchText);
-     return searchText.toString() !== '' && key.indexOf(searchText.toString()) !== -1;
-    }
-  }
-
   render() {
     const weeks = items.weeks;
     const { patch, task, users, projects } = this.props;
