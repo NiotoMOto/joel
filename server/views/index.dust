@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/vendors/normalize.css/normalize.css">
     <link rel="stylesheet" href="/public/css/main.css">
-    <title>Starter</title>
+    <title>Gestion projet</title>
   </head>
   <body>
     <div id="root">{content|s}</div>
