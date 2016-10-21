@@ -38,6 +38,3 @@ deploy:
       - docker run --name joel -d --restart=always -p 7000:4000 srv.guillemoto.com:5000/joel:latest
     when:
       branch: master
-    branches:
-      include:
-        - master
