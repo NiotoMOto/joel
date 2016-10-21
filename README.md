@@ -1,4 +1,6 @@
-Starter
+[![Build Status](http://drone.guillemoto.com/api/badges/NiotoMOto/joel/status.svg)](http://drone.guillemoto.com/NiotoMOto/joel)
+
+Joel backoffice
 ==========
 
 ## Installation
