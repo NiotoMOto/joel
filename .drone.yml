@@ -1,0 +1,45 @@
+clone:
+  path: github.com/NiotoMOto/joel
+
+build:
+  image:  srv.guillemoto.com:5000/node-with-sass:latest
+  commands:
+    - apk upgrade --update
+    - npm install
+    - gulp build
+  environment:
+    - DRONE_SERVER=http://drone.guillemoto.com
+    - DRONE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoiTmlvdG9NT3RvIiwidHlwZSI6InVzZXIifQ.vi7SAkP18ekP4UVsozthjJnJdCdyZMoOfXq-wyMj3yc
+
+cache:
+  mount:
+    - node_modules
+    - .git
+
+publish:
+  docker:
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    registry: srv.guillemoto.com:5000
+    insecure: true
+    repo: joel
+    tag: latest
+    storage_driver: vfs
+    save:
+      destination: docker/image.tar
+      tag: latest
+    when:
+      branch: drone-test
+      event: push
+
+deploy:
+  ssh:
+    host: srv.guillemoto.com
+    user: root
+    port: 22
+    commands:
+      - docker pull srv.guillemoto.com:5000/joel:latest
+      - docker rm -f -v joel
+      - docker run --name joel -d --restart=always -p 7000:4000 srv.guillemoto.com:5000/joel:latest
+    when:
+      branch: drone-test

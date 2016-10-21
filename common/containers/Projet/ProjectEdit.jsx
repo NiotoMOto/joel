@@ -5,6 +5,7 @@ import { FloatingActionButton } from 'material-ui';
 import { connect } from '../../services/util/index';
 import ProjectForm from '../../components/projects/ProjectForm';
 import Layout from '../../components/Layout';
+import TasksTable from '../../components/tasks/TasksTable';
 
 @connect({ props:['project', 'originalItem'], actions: ['project'] })
 export default class ProductNew extends Component {
@@ -34,6 +35,7 @@ export default class ProductNew extends Component {
           patch={actions.project.patch}
           project={project}
         />
+        <TasksTable />
       </Layout>
     );
   }

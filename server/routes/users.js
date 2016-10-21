@@ -21,12 +21,22 @@ userRouter.get('/new', (req, res) => {
 
 userRouter.get('/:id', (req, res) => {
   const id = req.params.id;
-  request('get', `/user/${id}`, req.body).then(({ body: user }) => {
-    const props = {
+  request('get', `/user/${id}`, req.body).then(({ body: user }) => (
+    {
       user,
       originalItem: user,
-    };
-    res.render('User/UserEdit', { props });
+    }
+  )).then((props) => {
+    const query = JSON.stringify({
+      user: props.user._id,
+    });
+    request('get',
+      `/task/?query=${query}&populate=[{"path":"user"},{"path":"project"}]`,
+      req.body)
+    .then(({ body: tasks }) => {
+      Object.assign(props, { tasks });
+      res.render('User/UserEdit', { props });
+    });
   });
 
 });

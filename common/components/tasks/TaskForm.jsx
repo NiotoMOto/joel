@@ -2,8 +2,9 @@ import React, { PropTypes, Component } from 'react';
 
 import { connect } from '../../services/util/index';
 import { Input, AutoComplete } from '../commons';
+import items from '../../constants/items';
 
-@connect({ props: ['users', 'projects'], actions: ['users', 'projects'] })
+@connect({ props: ['users', 'projects', 'currentWeek'], actions: ['users', 'projects'] })
 export default class TaskForm extends Component {
   static porpTypes = {
     task: PropTypes.object.isRequired,
@@ -12,18 +13,25 @@ export default class TaskForm extends Component {
 
   searchUser(q) {
     const query = JSON.stringify({
-      $or: [
-        {
-          firstName: `~${q}`,
-        },
-      ],
+      $or: [{ firstName: `~${q}` }],
     });
     this.props.actions.users.fetchAutocomplete({ query });
   }
 
+  searchProject(q) {
+    const query = JSON.stringify({
+      $or: [{ name: `~${q}` }],
+    });
+    this.props.actions.projects.fetchAutocomplete({ query });
+  }
+
   render() {
-    const { patch, task, users } = this.props;
-    console.log();
+    console.log(items.weeks, this.props.currentWeek);
+    const weeks = items.weeks;
+    const { patch, task, users, projects } = this.props;
+    const { user, project } = task;
+    const userValue = user ? user.firstName : '';
+    const projectValue = project ? project.name : '';
     return (
       <div>
         <div className="form-group">
@@ -48,6 +56,54 @@ export default class TaskForm extends Component {
             id="tech"
             onNewRequest={patch.bind(this, '/user')}
             onUpdateInput={::this.searchUser}
+            openOnFocus
+            searchText={userValue}
+          />
+        </div>
+        <div className="form-group">
+          <AutoComplete
+            dataSource={projects}
+            dataSourceConfig={{ text: 'name', value: '_id' }}
+            field="_id"
+            filter={AutoComplete.noFilter}
+            floatingLabelText="Projet"
+            hintText="Projet"
+            id="tech"
+            onNewRequest={patch.bind(this, '/project')}
+            onUpdateInput={::this.searchProject}
+            openOnFocus
+            searchText={projectValue}
+          />
+        </div>
+        <div className="form-group">
+          <Input
+            defaultValue={task.progress}
+            floatingLabelText="Progression"
+            hintText="Progression"
+            id="progress"
+            onChange={patch.bind(this, '/progress')}
+            type="number"
+          />
+        </div>
+        <div className="form-group">
+          <Input
+            defaultValue={task.timePass}
+            floatingLabelText="Temps passé"
+            hintText="Temps passé"
+            id="timePass"
+            onChange={patch.bind(this, '/timePass')}
+            type="number"
+          />
+        </div>
+        <div className="form-group">
+          <AutoComplete
+            dataSource={weeks}
+            field="week"
+            filter={AutoComplete.noFilter}
+            floatingLabelText="Semaine"
+            hintText="Semaine"
+            id="week"
+            onNewRequest={patch.bind(this, '/week')}
             openOnFocus
           />
         </div>

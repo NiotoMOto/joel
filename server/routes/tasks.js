@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const currentWeekNumber = require('current-week-number');
 
 const request = require('../services/request');
 const taskRouter = new express.Router();
@@ -24,19 +25,20 @@ taskRouter.get('/new', (req, res) => {
 
 taskRouter.get('/:id', (req, res) => {
   const id = req.params.id;
-  request('get', `/task/${id}`, req.body).then(({ body: task }) => (
+  request('get', `/task/${id}?populate=[{"path":"user"},{"path":"project"}]`, req.body).then(({ body: task }) => (
     {
       task,
       originalItem: task,
     }
   )).then((props) => {
-    Promise.all([
-      request('get', `/project/${props.task.project}`, req.body),
-      request('get', `/task//${props.task.project}`, req.body),
-    ]).then(([{ body: users }, { body: projects }]) => {
-      Object.assign(props, { users, projects });
-      res.render('Task/TasksEdit', { props });
-    });
+    Object.assign(
+      props,
+      {
+        users: [props.task.user],
+        project: [props.task.project],
+        currentWeek: currentWeekNumber(Date.now()),
+      });
+    res.render('Task/TasksEdit', { props });
   });
 
 });

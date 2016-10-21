@@ -5,7 +5,8 @@ const express = require('express');
 require('../data/');
 const apiRouter = require('./api');
 const mainRouter = new express.Router();
-const projetsRouter = require('./projects');
+const projectsRouter = require('./projects');
+const calendarRouter = require('./calendar');
 const usersRouter = require('./users');
 const tasksRouter = require('./tasks');
 
@@ -13,9 +14,10 @@ const request = require('../services/request');
 
 mainRouter.use('/api', apiRouter);
 
-mainRouter.use('/projects', projetsRouter);
+mainRouter.use('/projects', projectsRouter);
 mainRouter.use('/users', usersRouter);
 mainRouter.use('/tasks', tasksRouter);
+mainRouter.use('/calendar', calendarRouter);
 
 mainRouter.get('/', (req, res) => {
   request('get', '/user')

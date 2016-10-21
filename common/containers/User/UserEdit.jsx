@@ -5,6 +5,7 @@ import { FloatingActionButton } from 'material-ui';
 import { connect } from '../../services/util/index';
 import UserForm from '../../components/users/UserForm';
 import Layout from '../../components/Layout';
+import TasksTable from '../../components/tasks/TasksTable';
 
 @connect({ props:['user'], actions: ['user'] })
 export default class ProductNew extends Component {
@@ -34,6 +35,7 @@ export default class ProductNew extends Component {
           patch={actions.user.patch}
           user={user}
         />
+        <TasksTable />
       </Layout>
     );
   }

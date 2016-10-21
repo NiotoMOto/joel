@@ -1,12 +1,19 @@
 'use strict';
 
-import projetService from '../services/rest/project';
+import projectService from '../services/rest/project';
 
 export const FETCH_PROJECT = 'FETCH_PROJECT';
 
 export const fetch = (query) => (dispatch) =>
-  projetService.all(query)
+  projectService.all(query)
     .then(({ projects, ...rest }) => {
       dispatch({ type: FETCH_PROJECT, projects });
       return { projects, ...rest };
+    });
+
+export const fetchAutocomplete = (query) => (dispatch) =>
+  projectService.all(query)
+    .then((projects) => {
+      dispatch({ type: FETCH_PROJECT, projects });
+      return { projects };
     });

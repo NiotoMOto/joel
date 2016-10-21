@@ -11,6 +11,6 @@ require('./gulp/test');
 const gulp = require('gulp');
 const node = require('./gulp/node');
 
-gulp.task('build', ['lint:error', 'scss:build', 'webpack:build', 'compile:build', 'copy:build']);
+gulp.task('build', ['scss:build', 'webpack:build', 'compile:build', 'copy:build']);
 
 gulp.task('default', ['mongo-start', 'watch'], node.start);

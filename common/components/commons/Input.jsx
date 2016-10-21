@@ -6,7 +6,7 @@ import * as util from '../../services/util';
 export default class Input extends Component {
 
   static propTypes = {
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func,
     delay: PropTypes.number,
     value: PropTypes.string, // Si preecisée, toujours utilisée

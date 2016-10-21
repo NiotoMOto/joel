@@ -47,6 +47,12 @@ export default class Layout extends Component {
                 rightIcon={<ListIcon />}
                 style={{ width: '256px' }}
               />
+              <MenuItem
+                href="/calendar"
+                primaryText="Calendrier"
+                rightIcon={<ListIcon />}
+                style={{ width: '256px' }}
+              />
             </Menu>
           </Drawer>
           <h1>{this.props.title}</h1>
