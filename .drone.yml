@@ -23,9 +23,6 @@ publish:
     repo: joel
     tag: latest
     storage_driver: vfs
-    branches:
-      include:
-        - master
     when:
       branch: master
       event: push
