@@ -18,18 +18,16 @@ cache:
 
 publish:
   docker:
-    environment:
-      - DOCKER_LAUNCH_DEBUG=true
     registry: srv.guillemoto.com:5000
     insecure: true
     repo: joel
     tag: latest
     storage_driver: vfs
-    save:
-      destination: docker/image.tar
-      tag: latest
+    branches:
+      include:
+        - master
     when:
-      branch: drone-test
+      branch: master
       event: push
 
 deploy:
@@ -42,4 +40,7 @@ deploy:
       - docker rm -f -v joel
       - docker run --name joel -d --restart=always -p 7000:4000 srv.guillemoto.com:5000/joel:latest
     when:
-      branch: drone-test
+      branch: master
+    branches:
+      include:
+        - master
