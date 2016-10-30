@@ -24,11 +24,11 @@ const populate = () => {
       User.create({ username : 'Johann', password: 'johann', firstName: 'Johann', lastName: 'Begain' }),
     ])
   )).then(([project, user, project2, user2, ...rest]) => {
-    Task.create({ project, user, name: 'Tâche 1', progress: 0 });
-    Task.create({ project, user: user2, name: 'Tâche 2', progress: 100 });
-    Task.create({ project: project2, user, name: 'Tâche 3', progress: 50 });
-    Task.create({ project: project2, user, name: 'Tâche 4', progress: 27 });
-    Task.create({ project: project2, user: user2, name: 'Tâche 5', progress: 75 });
+    Task.create({ project, user, name: 'Tâche 1', progress: 0, weeks: [45, 46, 47] });
+    Task.create({ project, user: user2, name: 'Tâche 2', progress: 100, weeks: [45, 46, 47] });
+    Task.create({ project: project2, user, name: 'Tâche 3', progress: 50, weeks: [45, 46, 47] });
+    Task.create({ project: project2, user, name: 'Tâche 4', progress: 27, weeks: [45, 46, 47] });
+    Task.create({ project: project2, user: user2, name: 'Tâche 5', progress: 75, weeks: [45, 46, 47] });
   }).catch((err) => {
     log.err(err);
   });

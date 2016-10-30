@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { AutoComplete } from 'material-ui';
+import { AutoComplete, Chip } from 'material-ui';
 
 import { connect } from '../../services/util/index';
 import { Input, PAutoComplete } from '../commons';
@@ -24,6 +24,20 @@ export default class TaskForm extends Component {
       $or: [{ name: `~${q}` }],
     });
     this.props.actions.projects.fetchAutocomplete({ query });
+  }
+
+  pushWeek(value, index) {
+    if (index !== -1) {
+      this.props.patch('/weeks', [...this.props.task.weeks, value]);
+    }else {
+      console.log('error');
+    }
+  }
+
+  renderWeeks() {
+    return this.props.task.weeks.map((w) => (
+      <Chip className="text-center" key={w}>Semaine {w}</Chip>
+    ))
   }
 
   render() {
@@ -103,11 +117,14 @@ export default class TaskForm extends Component {
             hintText="Semaine"
             id="week"
             maxSearchResults={7}
-            onNewRequest={patch.bind(this, '/week')}
+            onNewRequest={::this.pushWeek}
             openOnFocus
             searchText={week}
             type="number"
           />
+        </div>
+        <div className="form-group">
+          {::this.renderWeeks()}
         </div>
       </div>
     );
