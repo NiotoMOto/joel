@@ -20,7 +20,8 @@ taskRouter.get('/', (req, res) => {
 });
 
 taskRouter.get('/new', (req, res) => {
-  res.render('Task/TasksNew');
+  const props = { task: { weeks: [] } };
+  res.render('Task/TasksNew', { props });
 });
 
 taskRouter.get('/:id', (req, res) => {

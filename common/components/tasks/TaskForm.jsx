@@ -28,16 +28,18 @@ export default class TaskForm extends Component {
 
   pushWeek(value, index) {
     if (index !== -1) {
-      this.props.patch('/weeks', [...this.props.task.weeks, value]);
-    }else {
-      console.log('error');
+      this.props.patch('/weeks', [...this.props.task.weeks, parseInt(value)]);
     }
   }
 
   renderWeeks() {
-    return this.props.task.weeks.map((w) => (
-      <Chip className="text-center" key={w}>Semaine {w}</Chip>
-    ))
+    let render = 'Non assignée à une semaine';
+    if (this.props.task.weeks && this.props.task.weeks.length) {
+      render = this.props.task.weeks.map((w) => (
+        <Chip className="text-center" key={w}>Semaine {w}</Chip>
+      ))
+    }
+    return render
   }
 
   render() {
