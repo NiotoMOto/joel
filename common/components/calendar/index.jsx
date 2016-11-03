@@ -7,7 +7,6 @@ import { connect } from '../../services/util';
 export default class Calendar extends Component {
 
   renderCase(week, user) {
-    // console.log(week, user);
     const { tasks } = this.props;
     let render = <div key={`${user._id}${week}`}>Pas de tâche</div>;
     const tasksToDisplay = tasks.filter((t) => {
@@ -24,19 +23,6 @@ export default class Calendar extends Component {
       ));
     }
     return render;
-  }
-
-  renderWeeks() {
-    const { selectedWeek } = this.props;
-    const weeks = [selectedWeek - 1, selectedWeek, selectedWeek + 1];
-    return weeks.map((s) => (
-      <div
-        className="inline-block"
-        key={s}
-      >
-        Semaine {s}
-      </div>
-    ));
   }
 
   renderLines() {
