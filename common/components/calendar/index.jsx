@@ -6,19 +6,36 @@ import { connect } from '../../services/util';
 @connect({ props: ['currentWeek', 'selectedWeek', 'users', 'projects', 'tasks'] })
 export default class Calendar extends Component {
 
+  goToTask(t) {
+    window.location = `/tasks/${t._id}`;
+  }
+
+  gotToNewTask(user, week) {
+    window.location = `/tasks/new?user=${user._id}&week=${week}`;
+  }
+
   renderCase(week, user) {
     const { tasks } = this.props;
-    let render = <div key={`${user._id}${week}`}>Pas de tâche</div>;
-    const tasksToDisplay = tasks.filter((t) => {
-      return _.includes(t.weeks, week) && t.user === user._id
-    });
-    if (tasksToDisplay && tasksToDisplay.length){
+    let render = (
+      <div
+        className="calendar-case clickable"
+        key={`${user._id}${week}`}
+        onClick={this.gotToNewTask.bind(this, user, week)}
+      >
+        <i className="fa fa-plus" />
+      </div>
+    );
+    const tasksToDisplay = tasks.filter((t) => (
+     _.includes(t.weeks, week) && t.user === user._id
+    ));
+    if (tasksToDisplay && tasksToDisplay.length) {
       render = tasksToDisplay.map((t) => (
         <div
-          className="inline-block"
+          className="calendar-case clickable"
           key={`${user._id}${week}`}
+          onClick={this.goToTask.bind(this, t)}
         >
-          <a href={`/tasks/${t._id}`}> {t.name} </a>
+          {t.name}
         </div>
       ));
     }
@@ -31,17 +48,17 @@ export default class Calendar extends Component {
     const { users } = this.props;
     return (
       <div>
-        <div className="col-sm-3">
-          <div>Semaines</div>
+        <div className="col-sm-3 calendar-column">
+          <div className="calendar-case">Semaines</div>
           {
             users.map((u) => (
-              <div key={`c${u._id}`}>{u.firstName}</div>
+              <div className="calendar-case" key={`c${u._id}`}>{u.firstName}</div>
             ))
           }
         </div>
         {weeks.map((s) => (
-          <div className="col-sm-3" key={`c${s}`}>
-            {s}
+          <div className="col-sm-3 calendar-column" key={`c${s}`}>
+            <div className="calendar-case">{s}</div>
            {
              users.map((u) => (
               this.renderCase(s, u)

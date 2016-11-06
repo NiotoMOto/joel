@@ -27,3 +27,36 @@ $green: #009688;
 .green  {
   background-color: $green;
 }
+
+// Calender
+.calendar-case {
+  padding: 10px;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ddd;
+  &.clickable {
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.12);
+      background-color: rgba(0,0,0,0.0980392);
+    }
+  }
+  &.red {
+    background-color: #C62828;
+    color: white;
+    border: none;
+    a {
+      color: white;
+    }
+  }
+  &.green {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+}
+
+.calendar-column {
+  padding: 0;
+}

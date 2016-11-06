@@ -20,8 +20,17 @@ taskRouter.get('/', (req, res) => {
 });
 
 taskRouter.get('/new', (req, res) => {
-  const props = { task: { weeks: [] } };
-  res.render('Task/TasksNew', { props });
+  console.log(req.query);
+  if(req.query && req.query.user && req.query.week) {
+    const { user, week } = req.query;
+    request('get', `/user/${req.query.user}?`).then(({ body: user }) => {
+      const task = { user, weeks: [week] };
+      res.render('Task/TasksNew', { props: { task } });
+    });
+  } else {
+    const props = { task: { weeks: [] } };
+    res.render('Task/TasksNew', { props });
+  }
 });
 
 taskRouter.get('/:id', (req, res) => {

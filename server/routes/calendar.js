@@ -14,16 +14,16 @@ calendarRouter.get('/', (req, res) => {
   const nextWeek = currentWeekNumber(moment().add(1, 'weeks').toString());
   const previousWeek = currentWeekNumber(moment().subtract(1, 'weeks').toString());
 
-  const takQuery = JSON.stringify({
+  const taskQuery = JSON.stringify({
     $or: [
       { weeks: currentWeek },
       { weeks: nextWeek },
       { weeks: previousWeek },
-    ]
+    ],
   });
   promise.props({
     users: request('get', '/user'),
-    tasks: request('get', `/task?query=${takQuery}`),
+    tasks: request('get', `/task?query=${taskQuery}`),
   }).then(({ users, tasks }) => {
     const props = {
       users: users.body,

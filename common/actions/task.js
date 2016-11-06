@@ -1,4 +1,7 @@
 'use strict';
+
+import * as _ from 'lodash';
+
 import taskService from '../services/rest/task';
 
 export const PATCH_TASK = 'PATCH_TASK';
@@ -13,9 +16,11 @@ export const create = (body) => (dispatch) => {
   const params = {
     querystring: {},
   };
+  if (body.weeks && body.weeks.length) {
+    body.weeks = _.map(body.weeks, (w) => (_.toNumber(w)));
+  }
   return taskService.create(
-    Object.assign(body, {}),
-    params).then((res) => {
+    Object.assign(body, {}), params).then((res) => {
       dispatch({ type: CREATE_TASK, res });
       return res;
     });
